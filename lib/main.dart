@@ -5,6 +5,7 @@ import 'package:pertemuan8/pages/login_page.dart';
 //import 'package:pertemuan8/pages/scale_animation_screen.dart';
 //import 'package:pertemuan8/pages/fade_animation_screen.dart';
 //import 'package:pertemuan8/pages/rotate_animation_screen.dart';
+import 'package:pertemuan8/pages/splash_screen.dart'; 
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,7 +16,7 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +24,20 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.deepPurple),
+        // Ubah sesuai dengan preferensi tema Anda
       ),
-      home: const LoginPage(),
+      home: const SplashScreen(), // Ganti home dengan SplashScreen
+      routes: {
+        '/login': (context) => const LoginPage(), // Tentukan rute login page
+      },
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(builder: (_) => const Scaffold(body: Center(child: Text('Route not found'))));
+      },
+      onGenerateRoute: (settings) {
+        // Kustomisasi tambahan untuk rute
+        return MaterialPageRoute(builder: (_) => const Scaffold(body: Center(child: Text('Route not found'))));
+      },
     );
   }
 }
