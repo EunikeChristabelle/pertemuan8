@@ -46,9 +46,15 @@ class ProductDetailScreen extends StatelessWidget {
               style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
-            Text(
-              'Rp ${product.price}',
-              style: const TextStyle(fontSize: 20, color: Colors.green),
+            TweenAnimationBuilder<int>(
+              tween: IntTween(begin: 0, end: product.price),
+              duration: const Duration(seconds: 2),
+              builder: (context, value, child) {
+                return Text(
+                  'Rp $value',
+                  style: const TextStyle(fontSize: 20, color: Colors.green),
+                );
+              },
             ),
             const SizedBox(height: 10),
             Text(

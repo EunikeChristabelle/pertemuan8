@@ -2,9 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:pertemuan8/firebase_options.dart';
 import 'package:pertemuan8/pages/login_page.dart';
-//import 'package:pertemuan8/pages/scale_animation_screen.dart';
-//import 'package:pertemuan8/pages/fade_animation_screen.dart';
-//import 'package:pertemuan8/pages/rotate_animation_screen.dart';
 import 'package:pertemuan8/pages/splash_screen.dart'; 
 
 Future<void> main() async {

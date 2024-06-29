@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pertemuan8/pages/home_page.dart';
 import 'package:pertemuan8/pages/register_page.dart';
 
@@ -14,8 +14,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final FirebaseAuth _auth = FirebaseAuth
-      .instance; // biar bisa pake function authentication dari firebase
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   final _formKey = GlobalKey<FormState>();
   bool _isLoading = false;
 
@@ -28,11 +27,12 @@ class _LoginPageState extends State<LoginPage> {
         UserCredential userCredential = await _auth.signInWithEmailAndPassword(
             email: _emailController.text, password: _passwordController.text);
         print("User Registered: ${userCredential.user?.email}");
+        await Future.delayed(const Duration(seconds: 2)); // Delay for animation
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => HomePage()));
+            context, MaterialPageRoute(builder: (context) => const HomePage()));
       } on FirebaseAuthException catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(e.message ?? 'An error occured')));
+            SnackBar(content: Text(e.message ?? 'An error occurred')));
       } finally {
         setState(() {
           _isLoading = false;
@@ -75,9 +75,7 @@ class _LoginPageState extends State<LoginPage> {
                   return null;
                 },
               ),
-              const SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               TextFormField(
                 controller: _passwordController,
                 decoration: const InputDecoration(
@@ -95,9 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                   return null;
                 },
               ),
-              const SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               _isLoading
                   ? const CircularProgressIndicator()
                   : ElevatedButton(
@@ -113,9 +109,9 @@ class _LoginPageState extends State<LoginPage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => RegisterPage()));
+                            builder: (context) => const RegisterPage()));
                   },
-                  child: Text(
+                  child: const Text(
                     "Don't have an account yet? Register here",
                     style: TextStyle(fontSize: 14),
                   ))
