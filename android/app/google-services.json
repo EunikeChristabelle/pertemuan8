@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "126070463509",
+    "project_id": "flutterapp-18b71",
+    "storage_bucket": "flutterapp-18b71.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:126070463509:android:a7d3c3e97fb3478567821c",
+        "android_client_info": {
+          "package_name": "com.example.pertemuan8"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBj2gSxMsZw_rFiYxq9Y3fj-8AJS90zahY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
