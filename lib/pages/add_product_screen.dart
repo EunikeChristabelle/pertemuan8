@@ -83,7 +83,21 @@ class _AddProductScreenState extends State<AddProductScreen> {
                       category: _category,
                     );
                     _firestoreService.addProduct(newProduct);
-                    Navigator.of(context).pop();
+
+                    // Show animated SnackBar
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: const Text('Product added successfully!'),
+                        behavior: SnackBarBehavior.floating,
+                        duration: const Duration(seconds: 2),
+                        backgroundColor: Colors.green,
+                      ),
+                    );
+
+                    // Close the AddProductScreen after a short delay
+                    Future.delayed(const Duration(seconds: 2), () {
+                      Navigator.of(context).pop();
+                    });
                   }
                 },
                 child: const Text('Add Product'),
