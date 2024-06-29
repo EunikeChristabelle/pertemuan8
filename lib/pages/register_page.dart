@@ -10,10 +10,12 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final FirebaseAuth _auth = FirebaseAuth
-      .instance; // biar bisa pake function authentication dari firebase
+  final TextEditingController _confirmPasswordController = TextEditingController();
+  final FirebaseAuth _auth = FirebaseAuth.instance; // biar bisa pake function authentication dari firebase
   final _formKey = GlobalKey<FormState>();
   bool _isLoading = false;
 
@@ -58,6 +60,40 @@ class _RegisterPageState extends State<RegisterPage> {
             children: [
               SvgPicture.asset('assets/logo.svg'),
               TextFormField(
+                controller: _nameController,
+                decoration: const InputDecoration(
+                    labelText: 'Name',
+                    prefixIcon: Icon(Icons.people),
+                    border: OutlineInputBorder()),
+                keyboardType: TextInputType.name,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your Name';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                controller: _phoneController,
+                decoration: const InputDecoration(
+                    labelText: 'Phone Number',
+                    prefixIcon: Icon(Icons.phone),
+                    border: OutlineInputBorder()),
+                keyboardType: TextInputType.phone,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your phone number';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              TextFormField(
                 controller: _emailController,
                 decoration: const InputDecoration(
                     labelText: 'Email',
@@ -90,6 +126,26 @@ class _RegisterPageState extends State<RegisterPage> {
                   }
                   if (value.length < 6) {
                     return 'Password must be at least 6 characters long';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                controller: _confirmPasswordController,
+                decoration: const InputDecoration(
+                    labelText: 'Confirm Password',
+                    prefixIcon: Icon(Icons.password),
+                    border: OutlineInputBorder()),
+                obscureText: true,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please confirm your password';
+                  }
+                  if (value != _passwordController.text) {
+                    return 'Passwords do not match';
                   }
                   return null;
                 },
